@@ -215,6 +215,14 @@ class GithubCommit {
     return sha.substring(0, 7);
   }
 
+  String get shortMessage {
+    final linebreak = commit.message.indexOf(RegExp(r'(\n)'));
+    return commit.message.substring(
+      0,
+      linebreak > -1 ? linebreak : commit.message.length,
+    );
+  }
+
   GithubCommit({
     required this.url,
     required this.sha,
