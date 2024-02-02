@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gitstory/src/internal/models/commit.dart';
+import 'package:gitstory/src/ui/avatar_image.dart';
 
 class CommitListView extends StatelessWidget {
   const CommitListView({super.key, required this.commits});
@@ -15,8 +16,7 @@ class CommitListView extends StatelessWidget {
           itemBuilder: (context, index) {
             final commit = commits[index];
             return ListTile(
-              title: Text(commit.shortMessage),
-              subtitle: Text(commit.commit.author.name),
+              leading: AvatarImage(url: commit.author?.avatarUrl),
               trailing: Text(commit.shortSha),
             );
           },
