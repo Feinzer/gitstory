@@ -46,4 +46,18 @@ class GithubApi {
       return [];
     }
   }
+
+  static Future<GithubCommit?> commit(String sha) async {
+    final url =
+        Uri.parse("https://api.github.com/repos/$owner/$repo/commits/$sha");
+    final response = await http.get(
+      url,
+      headers: _headers,
+    );
+    if (response.statusCode == 200) {
+      return GithubCommit.fromJson(response.body);
+    } else {
+      return null;
+    }
+  }
 }
