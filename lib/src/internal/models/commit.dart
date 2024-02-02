@@ -543,8 +543,8 @@ class GithubCommit {
     return {
       'url': url,
       'sha': sha,
-      'htmlUrl': htmlUrl,
-      'commentsUrl': commentsUrl,
+      'html_url': htmlUrl,
+      'comments_url': commentsUrl,
       'commit': commit.toMap(),
       'author': author?.toMap(),
       'committer': committer?.toMap(),
@@ -557,8 +557,8 @@ class GithubCommit {
     return GithubCommit(
       url: map['url'] ?? '',
       sha: map['sha'] ?? '',
-      htmlUrl: map['htmlUrl'] ?? '',
-      commentsUrl: map['commentsUrl'] ?? '',
+      htmlUrl: map['html_url'] ?? '',
+      commentsUrl: map['comments_url'] ?? '',
       commit: CommitData.fromMap(map['commit']),
       author:
           map['author'] != null ? GithubAuthor.fromMap(map['author']) : null,
