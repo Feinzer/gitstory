@@ -59,6 +59,7 @@ class _HomescreenState extends State<Homescreen> {
                       onChanged: (branch) {
                         setState(() {
                           selectedBranch = branch;
+                          refresh();
                         });
                       })
               ],
