@@ -38,18 +38,12 @@ class _HomescreenState extends State<Homescreen> {
     if (branches.isEmpty) refresh();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         title: Text(widget.title),
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: refresh,
-        label: const Text("Refresh"),
-        icon: const Icon(Icons.refresh),
-      ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            color: Theme.of(context).colorScheme.surfaceVariant,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(60.0),
+          child: Container(
+            height: 60,
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -70,6 +64,15 @@ class _HomescreenState extends State<Homescreen> {
               ],
             ),
           ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: refresh,
+        label: const Text("Refresh"),
+        icon: const Icon(Icons.refresh),
+      ),
+      body: Column(
+        children: <Widget>[
           if (commits.isNotEmpty) CommitListView(commits: commits)
         ],
       ),
