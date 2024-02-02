@@ -41,6 +41,7 @@ dependencies:
   image_fade: ^0.6.2
   animations: ^2.0.11
   timeago: ^3.6.1
+  url_launcher: ^6.2.4
 
 dev_dependencies:
   flutter_test:

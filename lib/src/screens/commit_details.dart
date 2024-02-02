@@ -3,6 +3,8 @@ import 'package:gitstory/src/internal/github/api.dart';
 import 'package:gitstory/src/internal/models/commit.dart';
 import 'package:gitstory/src/ui/avatar_image.dart';
 
+import 'package:url_launcher/url_launcher.dart';
+
 class CommitDetails extends StatefulWidget {
   final String sha;
 
@@ -20,6 +22,14 @@ class _CommitDetailsState extends State<CommitDetails> {
     setState(() {});
   }
 
+  Future<void> openInBrowser(String url) async {
+    try {
+      await launchUrl(Uri.parse(url));
+    } catch (e) {
+      debugPrint("Could not open $url");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     if (commit == null) getCommit();
@@ -34,11 +44,15 @@ class _CommitDetailsState extends State<CommitDetails> {
         backgroundColor: Theme.of(context).colorScheme.surface,
         title: const Text("Commit"),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        icon: const Icon(Icons.public),
-        label: const Text("Open in browser"),
-      ),
+      floatingActionButton: commit == null
+          ? null
+          : FloatingActionButton.extended(
+              onPressed: () {
+                openInBrowser(commit!.htmlUrl);
+              },
+              icon: const Icon(Icons.public),
+              label: const Text("Open in browser"),
+            ),
       body: AnimatedCrossFade(
         crossFadeState: commit == null
             ? CrossFadeState.showFirst
