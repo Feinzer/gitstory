@@ -17,7 +17,7 @@ class CommitListView extends StatelessWidget {
             return ListTile(
               title: Text(commit.commit.message),
               subtitle: Text(commit.commit.author.name),
-              trailing: Text(commit.shorterSha),
+              trailing: Text(commit.shortSha),
             );
           },
         ),

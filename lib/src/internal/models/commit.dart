@@ -211,7 +211,7 @@ class GithubCommit {
   final String commentsUrl;
   final CommitData commit;
 
-  String get shorterSha {
+  String get shortSha {
     return sha.substring(0, 7);
   }
 
