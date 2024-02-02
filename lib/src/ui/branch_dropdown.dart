@@ -44,13 +44,13 @@ class BranchDropdown extends StatelessWidget {
           height: 60,
           width: 150,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(12),
           ),
         ),
         dropdownStyleData: DropdownStyleData(
           maxHeight: 200,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(12),
           ),
         ),
         menuItemStyleData: const MenuItemStyleData(

@@ -17,6 +17,14 @@ class CommitListView extends StatelessWidget {
             final commit = commits[index];
             return ListTile(
               leading: AvatarImage(url: commit.author?.avatarUrl),
+              title: Text(
+                commit.shortMessage,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              subtitle: Text(
+                commit.commit.author.name,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
               trailing: Text(commit.shortSha),
             );
           },
