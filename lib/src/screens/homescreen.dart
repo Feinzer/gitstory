@@ -28,6 +28,7 @@ class _HomescreenState extends State<Homescreen> {
     }
     setState(() {});
     if (selectedBranch != null) {
+      commits = [];
       commits = await GithubApi.commits(selectedBranch!);
     }
     setState(() {});
@@ -72,11 +73,7 @@ class _HomescreenState extends State<Homescreen> {
         label: const Text("Refresh"),
         icon: const Icon(Icons.refresh),
       ),
-      body: Column(
-        children: <Widget>[
-          if (commits.isNotEmpty) CommitListView(commits: commits)
-        ],
-      ),
+      body: CommitListView(commits: commits),
     );
   }
 }

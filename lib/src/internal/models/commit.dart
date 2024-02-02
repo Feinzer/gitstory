@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:timeago/timeago.dart' as timeago;
+
 class CommitVerification {
   final bool verified;
   final String? reason;
@@ -496,6 +498,11 @@ class GithubCommit {
     );
   }
 
+  String get committedAt {
+    final date = DateTime.parse(commit.author.date);
+    return timeago.format(date);
+  }
+
   GithubCommit({
     required this.url,
     required this.sha,
@@ -542,7 +549,7 @@ class GithubCommit {
       'author': author?.toMap(),
       'committer': committer?.toMap(),
       'stats': stats?.toMap(),
-      'files': files?.map((x) => x?.toMap())?.toList(),
+      'files': files?.map((x) => x.toMap()).toList(),
     };
   }
 

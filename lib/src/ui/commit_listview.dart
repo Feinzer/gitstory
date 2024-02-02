@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gitstory/src/internal/models/commit.dart';
-import 'package:gitstory/src/ui/avatar_image.dart';
+import 'package:gitstory/src/screens/commit_details.dart';
+import 'package:gitstory/src/ui/commit_tile.dart';
+import 'package:gitstory/src/ui/shared_axis_page_route.dart';
 
 class CommitListView extends StatelessWidget {
   const CommitListView({super.key, required this.commits});
@@ -9,29 +11,30 @@ class CommitListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (commits.isNotEmpty) {
-      return Expanded(
-        child: ListView.builder(
-          itemCount: commits.length,
-          itemBuilder: (context, index) {
-            final commit = commits[index];
-            return ListTile(
-              leading: AvatarImage(url: commit.author?.avatarUrl),
-              title: Text(
-                commit.shortMessage,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-              subtitle: Text(
-                commit.commit.author.name,
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-              trailing: Text(commit.shortSha),
-            );
-          },
-        ),
-      );
-    } else {
-      return const Placeholder();
-    }
+    return AnimatedCrossFade(
+      crossFadeState: commits.isEmpty
+          ? CrossFadeState.showFirst
+          : CrossFadeState.showSecond,
+      duration: const Duration(milliseconds: 450),
+      firstChild: Container(),
+      secondChild: commits.isEmpty
+          ? Container()
+          : ListView.builder(
+              itemCount: commits.length,
+              itemBuilder: (context, index) {
+                final commit = commits[index];
+                return CommitTile(
+                  commit: commit,
+                  onTap: () {
+                    Navigator.of(context).push(
+                      SharedAxisPageRoute(
+                        page: CommitDetails(sha: commit.sha),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+    );
   }
 }
