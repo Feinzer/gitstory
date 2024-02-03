@@ -2,15 +2,28 @@
 
 A new Flutter project.
 
-## Getting Started
+### [Get the app here](https://github.com/Feinzer/gitstory/releases) 
+or run the project by following the steps below
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Running the project
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 1. [Install flutter](https://docs.flutter.dev/get-started/install)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 2. Clone the project
+```
+git clone https://github.com/Feinzer/gitstory.git
+cd gitstory
+```
+
+### 3. Install dependencies
+```
+flutter pub get
+```
+
+### 4. [Connect an android device via ADB](https://developer.android.com/tools/adb#Enabling)
+
+### 5. Running the project
+```
+flutter run --release
+```
